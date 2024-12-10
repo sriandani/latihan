@@ -1,0 +1,44 @@
+def undo_redo(stack):
+        stack.undo_stack = []
+        stack.redo_stack = []
+    
+def undo(stack):
+        if stack.undo_stack:
+            action = stack.undo_stack.pop()
+            stack.redo_stack.append(action)
+            return "Undo: (action)"
+        return "Tidak ada lagi proses sebelumnya untuk di-undo."
+    
+def redo(stack):
+        if stack.redo_stack:
+            action = stack.redo_stack.pop() 
+            stack.undo_stack.append(action)
+            return "Redo: (action)"
+        return "Tidak ada lagi proses setelahnya untuk di-redo."
+
+def pilihan():
+    editor=()
+    while True:
+        print("\nOpsi:")
+        print("1. Tambah Aksi")
+        print("2. Undo")
+        print("3. Redo")
+        print("4. Keluar")
+        pilihan = input("Pilih opsi (1-4): ")
+        
+        if pilihan == "1":
+            action = input("Masukkan aksi: ")
+            action.append(editor, action)  
+            print("Aksi ditambahkan: (action)")
+        elif pilihan == "2":
+            print(editor.undo())
+        elif pilihan == "3":
+            print(editor.redo())
+        elif pilihan == "4":
+            print("Keluar dari program.")
+            break
+        else:
+            print("Pilihan tidak valid. Silakan coba lagi.")
+
+pilihan()
+
